@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Tyres - TyreHub</title>
+    <link rel="stylesheet" href="order.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="customer_dashboard.html" class="logo">TyreHub</a>
+        <ul class="nav-links">
+            <li><a href="order.html">Order Tyres</a></li>
+            <li><a href="cart.html" id="cart-btn">Cart 🛒 (<span id="cart-count">0</span>)</a></li>
+            <li><a href="profile.html" id="profile-btn">Profile 👤 <span id="customerName">Customer</span></a></li>
+            <li><button id="logoutBtn">Logout 🚪</button></li>
+        </ul>
+    </nav>
+
+    <!-- Order Selection Section -->
+    <div class="order-container">
+        <h1>Select a Tyre for Your Vehicle</h1>
+        
+        <div class="selectors">
+            <label for="category-select">Category:</label>
+            <select id="category-select">
+                <option value="">Select Category</option>
+                <option value="2-wheeler">Two-Wheeler</option>
+                <option value="4-wheeler">Four-Wheeler</option>
+                <option value="truck">Truck</option>
+                <option value="farm">Farm</option>
+            </select>
+
+            <label for="brand-select">Vehicle Brand:</label>
+            <select id="brand-select" disabled>
+                <option value="">Select Brand</option>
+            </select>
+
+            <label for="vehicle-select">Vehicle:</label>
+            <select id="vehicle-select" disabled>
+                <option value="">Select Vehicle</option>
+            </select>
+        </div>
+        
+        <div class="tyre-buttons">
+            <button id="front-btn" class="active">Front</button>
+            <button id="rear-btn">Rear</button>
+        </div>
+        
+        <div id="tyre-display" class="tyre-grid"></div>
+    </div>
+
+    <div id="tyre-display" class="tyre-grid"></div>
+
+    <script src="order.js"></script>
+</body>
+</html>

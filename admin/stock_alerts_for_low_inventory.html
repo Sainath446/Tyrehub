@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Alert System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    .navbar {
+      background-color: #007BFF;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .navbar .logo {
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    .navbar .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+    .navbar .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      transition: color 0.3s;
+      padding: 10px 15px;
+      border-radius: 5px;
+    }
+    .navbar .nav-links a:hover {
+      background-color: #0056b3;
+      color: #ffcc00;
+    }
+    .container {
+      padding: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    th, td {
+      padding: 15px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #007BFF;
+      color: white;
+    }
+    .check-alerts-button {
+      padding: 12px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+    .check-alerts-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">TYRE HUB</div>
+    <div class="nav-links">
+      <a href="Dashboard.html">Sales Summary</a>
+      <a href="./bali admin code.html">Order Management</a>
+      <a href="./jai_ram.html">Inventory Management</a>
+      <a href="../index.html">Logout</a>
+    </div>
+  </div>
+  <div class="container">
+    <h1>Stock Alert System</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Stock</th>
+        </tr>
+      </thead>
+      <tbody id="inventoryTable">
+        <!-- Inventory rows will be added dynamically -->
+      </tbody>
+    </table>
+    <button class="check-alerts-button" onclick="checkLowStock()">Check for Low Stock Alerts</button>
+  </div>
+  <script>
+    const inventory = [
+      { id: 1, name: 'Two-Wheeler Tyre', category: 'Two-Wheeler', stock: 50 },
+      { id: 2, name: 'Three-Wheeler Tyre', category: 'Three-Wheeler', stock: 10 },
+      { id: 3, name: 'Four-Wheeler Tyre', category: 'Four-Wheeler', stock: 5 },
+      { id: 4, name: 'Heavy Vehicle Tyre', category: 'Heavy Vehicle', stock: 0 }
+    ];
+
+    function renderInventory() {
+      const tableBody = document.getElementById('inventoryTable');
+      tableBody.innerHTML = '';
+      inventory.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${item.id}</td>
+          <td>${item.name}</td>
+          <td>${item.category}</td>
+          <td>${item.stock}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    function checkLowStock() {
+      let lowStockItems = inventory.filter(item => item.stock < 20);
+      if (lowStockItems.length > 0) {
+        let alertMessage = 'Low Stock Alert for:\n';
+        lowStockItems.forEach(item => {
+          alertMessage += `${item.name} (Stock: ${item.stock})\n`;
+        });
+        alert(alertMessage);
+      } else {
+        alert('All items are sufficiently stocked.');
+      }
+    }
+
+    renderInventory();
+  </script>
+</body>
+</html>

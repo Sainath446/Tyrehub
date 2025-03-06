@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Management</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .navbar { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 10px 20px; 
+            background-color: #007BFF; 
+            color: white; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 50px;
+            z-index: 1000;
+        }
+        .navbar a { 
+            color: white; 
+            text-decoration: none; 
+            margin: 0 10px; 
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        .navbar div { 
+            display: flex; 
+            flex-wrap: nowrap;
+            gap: 10px;
+        }
+        .container { max-width: 900px; margin: 80px auto 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #f4f4f4; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#" id="home-link">TyreHub</a>
+        <div>
+            <a href="Dashboard.html" id="sales-summary-link">Sales Summary</a>
+            <a href="./stock_alerts_for_low_inventory.html">Stock Alerts</a>
+            <a href="./bali admin code.html">Order Management</a>
+            <a href="./jai_ram.html">Inventory Management</a>
+            <a href="../index.html" id="logout-link">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Customer Management</h1>
+        <input type="text" id="search" placeholder="Search Customers..." onkeyup="filterCustomers()">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Order ID</th>
+                    <th>Order Status</th>
+                    <th>Order Total ($)</th>
+                </tr>
+            </thead>
+            <tbody id="customers"></tbody>
+        </table>
+    </div>
+
+    <script>
+        let customers = JSON.parse(localStorage.getItem("customers")) || [
+            { name: "John Doe", active: true, orders: [{ id: 101, status: "Delivered", total: 150 }] },
+            { name: "Jane Smith", active: false, orders: [{ id: 102, status: "Pending", total: 200 }] }
+        ];
+
+        function displayCustomers() {
+            const container = document.getElementById("customers");
+            container.innerHTML = "";
+            customers.forEach(customer => {
+                customer.orders.forEach(order => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${customer.name}</td>
+                        <td>${customer.active ? "Active" : "Disabled"}</td>
+                        <td>${order.id}</td>
+                        <td>${order.status}</td>
+                        <td>$${order.total}</td>
+                    `;
+                    container.appendChild(row);
+                });
+            });
+            localStorage.setItem("customers", JSON.stringify(customers));
+        }
+
+        function filterCustomers() {
+            const searchValue = document.getElementById("search").value.toLowerCase();
+            const filteredCustomers = customers.filter(c => c.name.toLowerCase().includes(searchValue));
+            document.getElementById("customers").innerHTML = "";
+            filteredCustomers.forEach(customer => {
+                customer.orders.forEach(order => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${customer.name}</td>
+                        <td>${customer.active ? "Active" : "Disabled"}</td>
+                        <td>${order.id}</td>
+                        <td>${order.status}</td>
+                        <td>$${order.total}</td>
+                    `;
+                    document.getElementById("customers").appendChild(row);
+                });
+            });
+        }
+
+        function clearOldData() {
+            const now = new Date().getTime();
+            const lastClear = localStorage.getItem("lastClearTime");
+            if (!lastClear || now - lastClear > 90 * 24 * 60 * 60 * 1000) { // 3 months
+                localStorage.removeItem("customers");
+                localStorage.setItem("lastClearTime", now);
+            }
+        }
+
+        window.onload = function() {
+            clearOldData();
+            displayCustomers();
+        };
+    </script>
+</body>
+</html>

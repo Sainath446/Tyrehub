@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - TyreHub</title>
+    <link rel="stylesheet" href="payment.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="customer_dashboard.html" class="logo">TyreHub</a>
+        <ul class="nav-links">
+            <li><a href="customer_dashboard.html">Home</a></li>
+            <li><a href="cart.html">Cart 🛒</a></li>
+            <li><a href="profile.html">Profile 👤</a></li>
+        </ul>
+    </nav>
+
+    <!-- Payment Container -->
+    <div class="payment-container">
+        <h1>Order Summary</h1>
+
+        <div id="order-summary">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tyre Name</th>
+                        <th>Size</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="order-items">
+                    <!-- Order items will be dynamically inserted -->
+                </tbody>
+            </table>
+            <h3>Total: ₹<span id="total-amount">0</span></h3>
+        </div>
+
+        <!-- Payment Method Selection -->
+        <h2>Select Payment Method</h2>
+        <label>
+            <input type="radio" name="payment-method" value="razorpay" checked> Online Payment (UPI, Card, Net Banking)
+        </label><br>
+        <label>
+            <input type="radio" name="payment-method" value="cod"> Cash on Delivery (COD)
+        </label>
+
+        <button id="pay-now">Proceed to Pay</button>
+    </div>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="payment.js"></script>
+</body>
+</html>

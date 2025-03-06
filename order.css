@@ -1,0 +1,401 @@
+/* General Page Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: url('./assets/h (2).webp') no-repeat center center fixed;
+    background-size: cover;
+    color: #000;
+}
+
+/* Navigation Bar */
+.navbar {
+    width: 100%;
+    max-width: 100vw;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #007bff;
+    color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: background 0.3s;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Order Container */
+.order-container {
+    text-align: center;
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 600px;
+}
+
+/* Dropdown Styling */
+.selectors {
+    margin: 20px 0;
+}
+
+select {
+    padding: 8px;
+    font-size: 16px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+/* Tyre Selection Buttons */
+.tyre-buttons button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #007bff;
+    color: white;
+}
+
+.tyre-buttons button.active {
+    background: darkblue;
+}
+
+/* Recent Orders Section */
+.order-history {
+    text-align: center;
+    margin: 30px auto;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 500px;
+}
+
+.order-history ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.order-history li {
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    margin: 5px 0;
+    border-radius: 5px;
+}
+/* General Page Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: url('./assets/h (2).webp') no-repeat center center fixed;
+    background-size: cover;
+    color: #000;
+}
+
+/* Navigation Bar */
+.navbar {
+    width: 100%;
+    max-width: 100vw;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #007bff;
+    color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Dropdown Styling */
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    margin: 10px 0;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    background: white;
+    cursor: pointer;
+}
+
+/* Tyre Selection Buttons */
+.tyre-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.tyre-buttons button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.tyre-buttons button.active {
+    background: darkblue;
+}
+
+.tyre-buttons button:hover {
+    background: #0056b3;
+}
+
+/* Order History */
+.order-history ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.order-history li {
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    margin: 5px 0;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+/* Navigation Bar */
+.navbar {
+    width: 100%;
+    max-width: 100vw;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #004aad, #007bff);
+    color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Logo */
+.navbar .logo a {
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar .logo a:hover {
+    color: #ffcc00;
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-links li {
+    display: inline-block;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+/* Cart and Profile Icons */
+#cart-btn, #profile-btn {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out;
+}
+
+#cart-btn:hover, #profile-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Logout Button */
+#logoutBtn {
+    background: #ff4d4d;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: none;
+}
+
+#logoutBtn:hover {
+    background: #cc0000;
+    transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    #logoutBtn {
+        width: 100%;
+        text-align: center;
+    }
+}
+/* Quantity Selector */
+.quantity-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.quantity-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.quantity-btn:hover {
+    background: #0056b3;
+}
+
+.quantity-input {
+    width: 40px;
+    text-align: center;
+    font-size: 16px;
+    padding: 5px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+}
+/* Center + and - buttons */
+.quantity-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Flexbox for horizontal tyre items */
+#tyre-display {
+    display: flex;
+    flex-wrap: wrap; /* Ensures responsiveness */
+    justify-content: center; /* Center the tyre items */
+    gap: 20px; /* Spacing between items */
+}
+
+.tyre-item {
+    background: white;
+    border: 2px solid #ddd;
+    padding: 15px;
+    text-align: center;
+    width: 250px; /* Set a fixed width */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.quantity-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.quantity-btn:hover {
+    background: #0056b3;
+}
+
+.quantity-input {
+    width: 40px;
+    text-align: center;
+    font-size: 16px;
+    padding: 5px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+}
+/* Add to Cart Button */
+.add-to-cart {
+    background: linear-gradient(45deg, #28a745, #218838); /* Green Gradient */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: block;
+    margin: 10px auto; /* Center the button */
+    box-shadow: 2px 2px 10px rgba(40, 167, 69, 0.4);
+}
+
+.add-to-cart:hover {
+    background: linear-gradient(45deg, #218838, #1e7e34);
+    transform: scale(1.05);
+    box-shadow: 3px 3px 15px rgba(40, 167, 69, 0.6);
+}

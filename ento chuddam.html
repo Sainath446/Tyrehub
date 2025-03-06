@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TyreHub </title>
+    <link rel="stylesheet" href="styles/chuddam style.css">
+    <script src="script/chuddam script.js" defer></script>
+    <link rel="icon" href="imgs/rim-tyre-svgrepo-com.svg" type="image/x-icon">
+</head>
+<body>
+    <div id="login-page">
+        <h1>Welcome to TyreHub</h1>
+        <form id="login-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="role">Login as:</label>
+            <select id="role" required>
+                <option value="">Select</option>
+                <option value="admin">Admin</option>
+                <option value="customer">Customer</option>
+            </select>
+
+            <div id="admin-password" style="display: none;">
+                <label for="admin-pass">Admin Password:</label>
+                <input type="password" id="admin-pass">
+            </div>
+
+            <div id="customer-password" style="display: none;">
+                <label for="customer-pass">Create Password:</label>
+                <input type="password" id="customer-pass">
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div id="main-interface" style="display: none;">
+        <header>
+            <h1>TyreHub</h1>
+            <p>Your Tyre Business Growth Partner</p>
+            <div id="profile-section">
+                <span id="user-name"></span>
+                <button id="logout">Logout</button>
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#analytics">Analytics</a></li>
+                <li><a href="#inventory">Inventory</a></li>
+                <li><a href="#sales">Sales</a></li>
+                <li><a href="#receipts">Receipts</a></li>
+                <li><a href="#feedback">Feedback</a></li>
+                <li><a href="#profile">Profile</a></li>
+            </ul>
+        </nav>
+
+        <main id="admin-interface" style="display: none;">
+            <section id="analytics">
+                <h2>Analytics</h2>
+                <p>Detailed sales analytics and trends.</p>
+            </section>
+
+            <section id="inventory">
+                <h2>Inventory Management</h2>
+                <p>Manage current inventory and updates.</p>
+            </section>
+
+            <section id="sales">
+                <h2>Sales Reporting</h2>
+                <p>Comprehensive sales reports and insights.</p>
+            </section>
+
+            <section id="receipts">
+                <h2>Receipts</h2>
+                <p>View all customer receipts.</p>
+            </section>
+
+            <section id="feedback">
+                <h2>Customer Feedback</h2>
+                <p>All customer feedback displayed here.</p>
+            </section>
+
+            <section id="profile">
+                <h2>Admin Profile</h2>
+                <p>Manage your admin profile and settings.</p>
+            </section>
+        </main>
+
+        <main id="customer-interface" style="display: none;">
+            <section id="sales-overview">
+                <h2>Sales Overview</h2>
+                <p>Track your purchased items and trends.</p>
+            </section>
+
+            <section id="receipts">
+                <h2>Your Receipts</h2>
+                <p>View and download your purchase receipts.</p>
+            </section>
+
+            <section id="feedback">
+                <h2>Submit Feedback</h2>
+                <form id="feedback-form">
+                    <label for="feedback">Your Feedback:</label>
+                    <textarea id="feedback" rows="4" required></textarea>
+                    <button type="submit">Submit Feedback</button>
+                </form>
+            </section>
+
+            <section id="profile">
+                <h2>Your Profile</h2>
+                <p>Update your personal details and settings.</p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 TyreHub. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const adminPassword = "admin123"; // Pre-set admin password
+        const customers = {}; // Object to store customer credentials
+
+        document.getElementById('role').addEventListener('change', (event) => {
+            const role = event.target.value;
+            document.getElementById('admin-password').style.display = role === 'admin' ? 'block' : 'none';
+            document.getElementById('customer-password').style.display = role === 'customer' ? 'block' : 'none';
+        });
+
+        document.getElementById('login-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const role = document.getElementById('role').value;
+
+            if (role === 'admin') {
+                const adminPass = document.getElementById('admin-pass').value;
+                if (adminPass === adminPassword) {
+                    alert('Admin login successful!');
+                    document.getElementById('login-page').style.display = 'none';
+                    document.getElementById('main-interface').style.display = 'block';
+                    document.getElementById('admin-interface').style.display = 'block';
+                    document.getElementById('user-name').textContent = `Admin: ${name}`;
+                } else {
+                    alert('Incorrect admin password!');
+                }
+            } else if (role === 'customer') {
+                const customerPass = document.getElementById('customer-pass').value;
+                if (!customers[name]) {
+                    customers[name] = customerPass;
+                    alert('Customer account created successfully!');
+                } else if (customers[name] !== customerPass) {
+                    alert('Incorrect password for customer!');
+                    return;
+                } else {
+                    alert('Customer login successful!');
+                }
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('main-interface').style.display = 'block';
+                document.getElementById('customer-interface').style.display = 'block';
+                document.getElementById('user-name').textContent = `Customer: ${name}`;
+            } else {
+                alert('Please select a role!');
+            }
+        });
+
+        document.getElementById('logout').addEventListener('click', () => {
+            alert('You have logged out!');
+            document.getElementById('main-interface').style.display = 'none';
+            document.getElementById('login-page').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

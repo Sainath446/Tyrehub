@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Details - TyreHub</title>
+    <link rel="stylesheet" href="shipping.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="customer_dashboard.html" class="logo">TyreHub</a>
+        <ul class="nav-links">
+            <li><a href="customer_dashboard.html">Home</a></li>
+            <li><a href="cart.html">Cart 🛒</a></li>
+            <li><a href="profile.html">Profile 👤</a></li>
+        </ul>
+    </nav>
+
+    <!-- Shipping Form -->
+    <div class="shipping-container">
+        <h1>Shipping Details</h1>
+        <form id="shipping-form">
+            <label for="full-name">Full Name *</label>
+            <input type="text" id="full-name" required>
+
+            <label for="phone">Phone Number *</label>
+            <input type="text" id="phone" maxlength="10" pattern="\d{10}" required>
+
+            <label for="address">Address *</label>
+            <textarea id="address" required></textarea>
+
+            <label for="zipcode">Zip Code *</label>
+            <input type="text" id="zipcode" maxlength="6" pattern="\d{6}" required>
+
+            <label for="city">City *</label>
+            <input type="text" id="city" readonly required>
+
+            <label for="state">State *</label>
+            <input type="text" id="state" readonly required>
+
+            <button type="submit">Proceed to Payment</button>
+        </form>
+    </div>
+
+    <script src="shipping.js"></script>
+</body>
+</html>

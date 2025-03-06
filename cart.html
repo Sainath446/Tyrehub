@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TyreHub Cart</title>
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">TyreHub</div>
+        <ul class="nav-links">
+            <li><a href="customer_dashboard.html">Home</a></li>
+            <li><a href="./profile.html" id="profile-btn">Profile 👤</a></li>
+        </ul>
+    </nav>
+
+    <!-- Cart Section -->
+    <div class="cart-container">
+        <h1>Your Cart</h1>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Tyre Name</th>
+                    <th>Tyre Size</th>
+                    <th>Quantity</th>
+                    <th>Amount</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            
+            <tbody id="cart-items">
+                <tr>
+                    <td colspan="4">Your cart is empty.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Total Amount & Checkout -->
+        <div class="total-container">
+            <h3>Total: ₹<span id="total-amount">0</span></h3>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script src="cart.js"></script>
+</body>
+</html>

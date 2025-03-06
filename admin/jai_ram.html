@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .navbar .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .navbar .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+         .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        .stock-status {
+            font-weight: bold;
+        }
+
+        .in-stock {
+            color: green;
+        }
+
+        .low-stock {
+            color: orange;
+        }
+
+        .out-of-stock {
+            color: red;
+        }
+
+        .action-buttons button {
+            margin-right: 10px;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .edit-button {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .delete-button {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <<div class="navbar">
+        <div class="logo">TYREHUB</div>
+        <div class="nav-links">
+            <a href="Dashboard.html">Sales Summary</a>
+            <a href="stock_alerts_for_low_inventory.html">Stock Alerts</a>
+            <a href="bali admin code.html">Order Management</a>
+            <a href="jai_ram.html">Inventory Management</a>
+            <a href="../index.html">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Inventory Management</h1>
+        <div class="filter-section">
+            <select id="wheelerType" onchange="filterByWheelerType()">
+                <option value="">Select Wheeler Type</option>
+                <option value="Two-Wheeler">Two-Wheeler</option>
+                <option value="Three-Wheeler">Three-Wheeler</option>
+                <option value="Four-Wheeler">Four-Wheeler</option>
+            </select>
+            <select id="vehicleBrand" onchange="filterByBrand()">
+                <option value="">Select Vehicle Brand</option>
+                <option value="Honda">Honda</option>
+                <option value="Yamaha">Yamaha</option>
+                <option value="Suzuki">Suzuki</option>
+                <option value="Bajaj">Bajaj</option>
+            </select>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Stock</th>
+                    <th>Production Quantity</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tyreTable">
+                </tbody>
+        </table>
+    </div>
+
+    <script>
+        const tyres = [
+            { id: 1, name: 'Zapper FS1', category: 'Two-Wheeler', brand: 'MRF', stock: 50, production: 1000 },
+            { id: 2, name: 'Zapper FQ', category: 'Two-Wheeler', brand: 'Apollo', stock: 10, production: 500 },
+            { id: 3, name: 'Max Grip T1', category: 'Three-Wheeler', brand: 'CEAT', stock: 5, production: 200 },
+            { id: 4, name: 'Road Master', category: 'Four-Wheeler', brand: 'Goodyear', stock: 0, production: 300 },
+            { id: 5, name: 'Energy XT', category: 'Two-Wheeler', brand: 'MRF', stock: 25, production: 750 },
+            { id: 6, name: 'Milaze X3', category: 'Three-Wheeler', brand: 'CEAT', stock: 15, production: 600 },
+            { id: 7, name: 'Wrangler HP', category: 'Four-Wheeler', brand: 'Goodyear', stock: 30, production: 900 },
+            { id: 8, name: 'Pilot Sporty', category: 'Two-Wheeler', brand: 'Michelin', stock: 5, production: 400 },
+            { id: 9, name: 'City Grip', category: 'Two-Wheeler', brand: 'Michelin', stock: 12, production: 550 },
+            { id: 10, name: 'LongWay', category: 'Three-Wheeler', brand: 'JK Tyre', stock: 8, production: 350 },
+            { id: 11, name: 'Ultima Neo', category: 'Four-Wheeler', brand: 'JK Tyre', stock: 20, production: 700 }
+        ];
+
+        function renderStockStatus(stock) {
+            if (stock === 0) return '<span class="stock-status out-of-stock">Out of Stock</span>';
+            if (stock < 20) return '<span class="stock-status low-stock">Low Stock</span>';
+            return '<span class="stock-status in-stock">In Stock</span>';
+        }
+
+        function renderTable(tyresToDisplay) {
+            const tableBody = document.getElementById('tyreTable');
+            tableBody.innerHTML = ''; // Clear existing rows
+
+            tyresToDisplay.forEach(tyre => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${tyre.id}</td>
+                    <td>${tyre.name}</td>
+                    <td>${tyre.category}</td>
+                    <td>${renderStockStatus(tyre.stock)}</td>
+                    <td>${tyre.production}</td>
+                    <td class="action-buttons">
+                        <button class="edit-button" onclick="editTyre(${tyre.id})">Edit</button>
+                        <button class="delete-button" onclick="deleteTyre(${tyre.id})">Delete</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function filterByWheelerType() {
+            const selectedType = document.getElementById('wheelerType').value;
+            filterTyres(); // Call the main filter function
+        }
+
+        function filterByBrand() {
+            const selectedBrand = document.getElementById('vehicleBrand').value;
+            filterTyres(); // Call the main filter function
+        }
+
+        function filterTyres() {
+            const selectedType = document.getElementById('wheelerType').value;
+            const selectedBrand = document.getElementById('vehicleBrand').value;
+
+            const filteredTyres = tyres.filter(tyre => {
+                const typeMatch = selectedType === '' || tyre.category === selectedType;
+                const brandMatch = selectedBrand === '' || tyre.brand === selectedBrand;
+                return typeMatch && brandMatch;
+            });
+
+            renderTable(filteredTyres);
+        }
+
+        function editTyre(id) {
+            alert('Edit tyre with ID: ' + id);
+        }
+
+        function deleteTyre(id) {
+            const index = tyres.findIndex(tyre => tyre.id === id);
+            if (index !== -1) {
+                tyres.splice(index, 1);
+                filterTyres(); // Re-render the table after deletion
+            }
+        }
+
+        // Initial rendering of the table
+        renderTable(tyres);
+    </script>
+
+</body>
+</html>

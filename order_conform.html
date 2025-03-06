@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - TyreHub</title>
+    <link rel="stylesheet" href="./conform.css">
+</head>
+<body>
+
+    <div class="confirmation-container">
+        <h1>🎉 Order Successful! 🎉</h1>
+        <p id="order-message">Thank you for your purchase! Your order has been placed successfully.</p>
+        <a href="customer_dashboard.html" class="btn">Return to Dashboard</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const codOrder = JSON.parse(localStorage.getItem("codOrder"));
+            if (codOrder) {
+                document.getElementById("order-message").innerHTML = `
+                    <p>Your order of <strong>₹${codOrder.totalAmount}</strong> will be delivered soon.</p>
+                    <p><strong>Payment Method:</strong> ${codOrder.paymentMethod}</p>
+                    <p><strong>Please pay in cash upon delivery.</strong></p>
+                `;
+                localStorage.removeItem("codOrder"); // Clear COD order details after display
+            }
+        });
+    </script>
+
+</body>
+</html>

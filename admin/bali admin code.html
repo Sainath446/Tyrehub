@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .navbar {
+            background-color: #007BFF;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .navbar .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .navbar .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .navbar .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background 0.3s, color 0.3s;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        .navbar .nav-links a:hover {
+            background-color: #0056b3;
+            color: #ffcc00;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        .status {
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .pending { background-color: orange; color: white; }
+        .shipped { background-color: green; color: white; }
+        .delivered { background-color: blue; color: white; }
+        button {
+            padding: 8px 12px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .btn-ship { background-color: green; color: white; }
+        .btn-ship:hover { background-color: darkgreen; }
+        .btn-deliver { background-color: blue; color: white; }
+        .btn-deliver:hover { background-color: darkblue; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">TYRE HUB</div>
+        <div class="nav-links">
+            <a href="Dashboard.html">Sales Summary</a>
+            <a href="./stock_alerts_for_low_inventory.html">Stock Alerts</a>
+            <a href="./bali admin code.html">Order Management</a>
+            <a href="./jai_ram.html">Inventory Management</a>
+            <a href="../index.html">Logout</a>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Orders Management</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="ordersTable">
+                <tr>
+                    <td>#101</td>
+                    <td>John Doe</td>
+                    <td>$200</td>
+                    <td><span class="status pending">Pending</span></td>
+                    <td>
+                        <button class="btn-ship" onclick="updateStatus(this, 'shipped')">Ship</button>
+                        <button class="btn-deliver" onclick="updateStatus(this, 'delivered')">Deliver</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>#102</td>
+                    <td>Jane Smith</td>
+                    <td>$150</td>
+                    <td><span class="status shipped">Shipped</span></td>
+                    <td>
+                        <button class="btn-deliver" onclick="updateStatus(this, 'delivered')">Deliver</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function updateStatus(button, newStatus) {
+            let row = button.parentElement.parentElement;
+            let statusCell = row.querySelector(".status");
+            
+            statusCell.className = `status ${newStatus}`;
+            statusCell.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
+            
+            if (newStatus === 'delivered') {
+                button.parentElement.innerHTML = ''; // Remove buttons after delivered
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TYREHUB</title>
+    <link rel="stylesheet" href="sytle.css">
+</head>
+<body>
+    <script>
+        // Redirect if not logged in
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            window.location.href = "./chuddam login.html";
+        }
+    </script>
+
+    <nav class="navbar">
+        <div class="logo"><a href="customer_dashboard.html" id="dashboard-logo">TyreHub</a></div>
+        <ul class="nav-links">
+            <li><a href="order.html">Order Tyres</a></li>
+            <li><a href="cart.html">Cart 🛒</a></li>
+            <li><a href="profile.html">Profile 👤</a></li>
+            <li><a href="#" id="logoutBtn">Logout 🚪</a></li>
+        </ul>
+    </nav>
+
+    
+
+    <div class="website-info">
+        <h2>About TyreHub</h2>
+        <p>TyreHub is your go-to destination for high-quality tyres for all vehicles, from Two-Wheelers to Trucks and Farm Vehicles. We offer top brands at competitive prices, ensuring affordability and quality. Enjoy a seamless online ordering experience, fast shipping, and expert support.</p>
+    </div>
+
+    <div style="text-align: center;">
+        <button class="start-shopping-btn" onclick="window.location.href='./order.html'">Start Shopping</button>
+    </div>
+
+    <div class="info-section">
+        <div class="notifications">
+            <h2>Notifications</h2>
+            <p id="notificationText">No new notifications.</p>
+        </div>
+
+        <div class="order-history">
+            <h2>Recent Orders</h2>
+            <ul id="orderList">
+                <li>No recent orders.</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="contact-us">
+        <h2>Contact Us</h2>
+        <p>📍 Address: 123 TyreHub Street, Auto City, India</p>
+        <p>📞 Phone: +91 98765 43210</p>
+        <p>📧 Email: <a href="mailto:support@tyrehub.com">support@tyrehub.com</a></p>
+        <p>🕒 Working Hours: Mon - Sat (9:00 AM - 7:00 PM)</p>
+    </footer>
+
+    <script src="customer_dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TyreHub - Sales Overview</title>
+    <link rel="stylesheet" href="sytle.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header>
+            <h1>Sales Overview</h1>
+        </header>
+
+        <section class="categories">
+            <div class="category-grid">
+                <div class="category-card">
+                    <h3>Two-Wheeler</h3>
+                    <canvas id="chartTwoWheeler"></canvas>
+                </div>
+                <div class="category-card">
+                    <h3>Three-Wheeler</h3>
+                    <canvas id="chartThreeWheeler"></canvas>
+                </div>
+                <div class="category-card">
+                    <h3>Four-Wheeler</h3>
+                    <canvas id="chartFourWheeler"></canvas>
+                </div>
+                <div class="category-card">
+                    <h3>Truck</h3>
+                    <canvas id="chartTruck"></canvas>
+                </div>
+                <div class="category-card">
+                    <h3>Farm</h3>
+                    <canvas id="chartFarm"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <a href="customer_dashboard.html" class="back-btn">Back to Dashboard</a>
+    </div>
+
+    <script src="sales.js"></script>
+</body>
+</html>

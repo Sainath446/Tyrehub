@@ -1,0 +1,226 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Horizontal Navigation Bar with Aligned Title */
+        .navbar {
+            width: 100%;
+            background-color: #007bff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;             
+	    padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar h1 {
+            color: white;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+
+        .nav-links a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+
+        .container {
+            margin-top: 60px; /* Adjust for navbar height */
+            padding: 20px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: 300px !important;
+        }
+
+        /* Styling the Stock Alert List */
+        #lowStockList {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        #lowStockList li {
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 5px;
+            color: white; /* Text color */
+            background-color: #ff4d4d; /* Red for low stock */
+        }
+    </style>
+</head>
+<body>
+    <!-- Horizontal Navigation Bar with Title -->
+    <div class="navbar">
+        <h1> <a href="#TYREHUB" style="color: white; text-decoration: none;" >TYREHUB</a> </h1>
+        <div class="nav-links">
+            <a href="#sales">Sales Summary</a>
+            <a href="./stock_alerts_for_low_inventory.html">Stock Alerts</a>
+            <a href="./bali admin code.html">Order Management</a>
+            <a href="./jai_ram.html">Inventory Management</a>
+            <a href="./custom mgmt.html">Customer Management</a>
+            <a href="../index.html">Logout</a>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Order Status Overview -->
+        <div class="card" id="order-status">
+            <h2>Order Status Overview</h2>
+            <p>Pending: <span id="pending">5</span></p>
+            <p>Processing: <span id="processing">10</span></p>
+            <p>Shipped: <span id="shipped">50</span></p>
+            <p>Delivered: <span id="delivered">55</span></p>
+        </div>
+
+        <!-- Stock Alerts Section -->
+        <div class="card" id="stock-alerts">
+            <h2>Stock Alerts</h2>
+            <p>Low Stock Items: <span id="low-stock">3</span></p>
+            <ul id="lowStockList"></ul>
+            <p>Reorder Needed: <span id="reorder-needed">2</span></p>
+        </div>
+
+        <!-- Sales Summary & Customer Insights -->
+        <div class="grid">
+            <div class="card" id="sales">
+                <h2>Sales Summary</h2>
+                <select id="salesFilter">
+                    <option value="monthly">Monthly</option>
+                    <option value="yearly">Yearly</option>
+                </select>
+                <canvas id="salesChart"></canvas>
+            </div>
+            <div class="card" id="customers">
+                <h2>Customer Insights</h2>
+                <canvas id="customerChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const salesCtx = document.getElementById("salesChart").getContext("2d");
+            const customerCtx = document.getElementById("customerChart").getContext("2d");
+
+const salesFilter = document.getElementById("salesFilter");
+            let salesChart;
+
+            function updateSalesChart(type) {
+                if (salesChart) {
+                    salesChart.destroy();
+                }
+                
+                let labels, data, label, borderColor, backgroundColor;
+                
+                if (type === "monthly") {
+                    labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+                    data = [10000, 12000, 15000, 13000, 14000, 16000];
+                    label = 'Monthly Sales ($)';
+                    borderColor = 'rgba(54, 162, 235, 1)';
+                    backgroundColor = 'rgba(54, 162, 235, 0.2)';
+                } else {
+                    labels = ['2019', '2020', '2021', '2022', '2023', '2024'];
+                    data = [50000, 60000, 70000, 85000, 90000, 95000];
+                    label = 'Annual Sales ($)';
+                    borderColor = 'rgba(255, 99, 132, 1)';
+                    backgroundColor = 'rgba(255, 99, 132, 0.2)';
+                }
+                
+                salesChart = new Chart(salesCtx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: label,
+                            data: data,
+                            borderColor: borderColor,
+                            backgroundColor: backgroundColor,
+                            fill: true,
+                            tension: 0.1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+
+            salesFilter.addEventListener("change", function() {
+                updateSalesChart(salesFilter.value);
+            });
+
+            updateSalesChart("monthly");
+
+            new Chart(customerCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['New Sign-ups', 'Active Customers', 'Inactive Customers'],
+                    datasets: [{
+                        label: 'Customer Insights',
+                        data: [20, 300, 50],
+                        backgroundColor: ['rgba(75, 192, 192, 0.6)', 'rgba(255, 159, 64, 0.6)', 'rgba(153, 102, 255, 0.6)']
+                    }]
+                },
+                options: { responsive: true }
+            });
+
+            // Populate Low Stock Items with Red Background
+            const lowStockItems = ['Tire A', 'Tire B', 'Tire C'];
+            const lowStockList = document.getElementById("lowStockList");
+            lowStockItems.forEach(item => {
+                let listItem = document.createElement("li");
+                listItem.textContent = item;
+                lowStockList.appendChild(listItem);
+            });
+        });
+    </script>
+</body>
+</html>
