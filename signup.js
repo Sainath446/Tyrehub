@@ -21,5 +21,5 @@ document.getElementById("signupForm").addEventListener("submit", function(event)
     localStorage.setItem("customers", JSON.stringify(storedCustomers));
 
     alert("Sign-up successful! You can now log in.");
-    window.location.href = "./index.html";
+    window.location.href ="./index.html";
 });
