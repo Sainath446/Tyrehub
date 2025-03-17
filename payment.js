@@ -57,7 +57,7 @@ function processOnlinePayment() {
         "handler": function (response) {
             alert("Payment Successful! Order ID: " + response.razorpay_payment_id);
             localStorage.removeItem("cart"); // Clear cart after payment
-            window.location.href = "order_confirmation.html"; // Redirect to order confirmation
+            window.location.href = "./order_conform.html"; // Redirect to order confirmation
         },
         "prefill": {
             "name": localStorage.getItem("currentUser") || "Customer",
